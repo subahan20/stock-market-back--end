@@ -1,0 +1,8 @@
+# Backend-local gitignore — root .gitignore already covers most of this,
+# but keep these here so the backend folder stays clean even if it's used standalone.
+node_modules/
+dist/
+.env
+.env.local
+*.log
+.DS_Store

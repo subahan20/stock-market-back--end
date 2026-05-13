@@ -1,0 +1,21 @@
+{
+  "name": "stock-dashboard-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "db:check": "node scripts/check-db.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^5.2.1",
+    "express-validator": "^7.2.0",
+    "nodemailer": "^8.0.7",
+    "nodemon": "^3.1.14",
+    "socket.io": "^4.8.1"
+  }
+}

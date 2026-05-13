@@ -1,0 +1,2 @@
+-- Deprecated: all DDL lives in /migrations (001–008). Apply in order via Supabase SQL editor or `psql`.
+-- See backend/migrations/*.sql

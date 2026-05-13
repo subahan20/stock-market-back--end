@@ -1,0 +1,14 @@
+-- Migration: 008_seed_initial_stock_data
+-- NO-OP. Live data only — `public.stocks` is populated exclusively by the backend live ingest
+-- job (realtimeStock.engine → persistRows) which upserts Twelve Data quotes. Do NOT seed manual rows.
+--
+-- To clear any previously inserted seed rows on an existing project, run once:
+--   TRUNCATE public.stocks RESTART IDENTITY CASCADE;
+-- (CASCADE because `stock_chart_history` and `ai_analysis` have FK on stocks.symbol.)
+--
+-- Optional one-time backfill for Auth users created before migration 007:
+-- INSERT INTO public.users (id, email, full_name, avatar_url, provider, created_at, updated_at)
+-- SELECT id, lower(coalesce(email, '')), raw_user_meta_data->>'full_name', raw_user_meta_data->>'avatar_url',
+--        coalesce(raw_app_meta_data->>'provider', 'email'), now(), now()
+-- FROM auth.users
+-- ON CONFLICT (id) DO UPDATE SET email = excluded.email, updated_at = now();
