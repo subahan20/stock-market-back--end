@@ -372,7 +372,7 @@ export function buildGroqEmailTemplate({ recipientName, contentHtml, generatedAt
               <div style="display:inline-block;font-size:11px;letter-spacing:.18em;color:#38bdf8;text-transform:uppercase;font-weight:600;">Stock Insights · Groq AI Digest</div>
               <h1 style="margin:10px 0 4px 0;font-size:22px;font-weight:600;color:#f8fafc;line-height:1.3;">${greeting}</h1>
               <p style="margin:6px 0 16px 0;font-size:12px;color:#64748b;">
-                Generated ${escapeHtml(tsLabel)} IST by Groq Llama 3 analyzing real-time market data.
+                Generated ${escapeHtml(tsLabel)} IST by Groq Llama 3.1 analyzing real-time market data.
               </p>
             </td>
           </tr>

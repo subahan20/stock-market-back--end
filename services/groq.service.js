@@ -50,11 +50,16 @@ export async function generateEmailDigestWithGroq(marketData) {
     return { error: 'Groq API key not configured' };
   }
 
-  const prompt = `You are a professional financial advisor. Generate an email digest summarizing the current live stock market data provided below. 
-  The email should have:
-  1. A warm, professional greeting.
-  2. A brief summary of the overall market performance (NIFTY/SENSEX).
-  3. Highlights of top gainers and losers.
+  const prompt = `You are a professional financial advisor. Generate an email digest body summarizing the current live stock market data provided below. 
+
+  CRITICAL INSTRUCTIONS:
+  1. DO NOT include any greetings (like "Dear Client" or "Hello") and DO NOT include any sign-offs (like "Sincerely" or your name). The application template already handles the personalized header. Jump DIRECTLY to the market summary.
+  2. IF the "nifty" or "sensex" keys are missing or null in the Data object below, DO NOT write about them and DO NOT use placeholders like "unavailable". Instead, start immediately by summarizing the performance of the individual active stock movers listed in topGainers and topLosers.
+
+  The summary should have:
+  1. An opening sentence summarizing the overall market mood today based on the available data.
+  2. A brief breakdown of the market indicators (only if NIFTY/SENSEX data are provided).
+  3. Highlights of the top gainers and losers.
   4. Your expert take or concluding thought for the day.
   Format it using clean HTML tags (like <p>, <ul>, <li>, <strong>) so it renders nicely in an email client. Do not use markdown backticks around the HTML.
 
@@ -66,7 +71,7 @@ export async function generateEmailDigestWithGroq(marketData) {
       messages: [
         {
           role: 'system',
-          content: 'You are an expert financial advisor writing a direct email to a client. Return ONLY the HTML content, without any markdown formatting wrappers or explanations.',
+          content: 'You are an expert financial advisor writing a direct email to a client. Return ONLY the HTML content body. DO NOT generate any greetings, salutations, or placeholders like "[Client Name]". Start immediately with the market analysis.',
         },
         {
           role: 'user',

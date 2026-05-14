@@ -129,12 +129,11 @@ export async function sendAiInsightsEmail({ user, name, email }) {
     throw new ApiError('Live market data is not available yet', HTTP_STATUS.SERVICE_UNAVAILABLE);
   }
 
-  const miniSnapshot = {
-    nifty: snapshot.nifty,
-    sensex: snapshot.sensex,
-    topGainers: snapshot.topGainers,
-    topLosers: snapshot.topLosers,
-  };
+  const miniSnapshot = {};
+  if (snapshot.nifty && snapshot.nifty.value != null) miniSnapshot.nifty = snapshot.nifty;
+  if (snapshot.sensex && snapshot.sensex.value != null) miniSnapshot.sensex = snapshot.sensex;
+  if (snapshot.topGainers?.length) miniSnapshot.topGainers = snapshot.topGainers;
+  if (snapshot.topLosers?.length) miniSnapshot.topLosers = snapshot.topLosers;
 
   const groqRes = await generateEmailDigestWithGroq(miniSnapshot);
   if (groqRes.error) {
