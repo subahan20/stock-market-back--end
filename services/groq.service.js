@@ -33,7 +33,7 @@ export async function analyzeLiveMarketWithGroq(marketData) {
           content: prompt,
         },
       ],
-      model: 'llama3-8b-8192',
+      model: 'llama-3.1-8b-instant',
       temperature: 0.5,
     });
 
@@ -73,7 +73,7 @@ export async function generateEmailDigestWithGroq(marketData) {
           content: prompt,
         },
       ],
-      model: 'llama3-8b-8192',
+      model: 'llama-3.1-8b-instant',
       temperature: 0.4,
     });
 
