@@ -5,7 +5,7 @@ const requiredInProduction = ['SUPABASE_URL', 'SUPABASE_SERVICE_ROLE_KEY'];
 export const env = {
   nodeEnv: process.env.NODE_ENV || 'development',
   port: Number(process.env.PORT || 4000),
-  clientOrigin: process.env.CLIENT_ORIGIN || 'http://localhost:4000',
+  clientOrigin: process.env.CLIENT_ORIGIN || 'http://localhost:5173',
   supabaseUrl: process.env.SUPABASE_URL || '',
   supabaseServiceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY || '',
   tables: {
@@ -61,6 +61,7 @@ export const env = {
   marketBroadcastMs: Number(process.env.MARKET_BROADCAST_MS || 300000),
   externalStockApiUrl: process.env.EXTERNAL_STOCK_API_URL || '',
   externalStockApiKey: process.env.EXTERNAL_STOCK_API_KEY || '',
+  groqApiKey: process.env.GROQ_API_KEY || '',
   /** Twelve Data — when set, quotes/charts/sparklines use api.twelvedata.com instead of Yahoo */
   twelveDataApiKey: process.env.TWELVE_DATA_API_KEY || '',
   /**

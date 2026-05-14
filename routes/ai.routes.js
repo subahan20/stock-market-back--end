@@ -8,5 +8,6 @@ import * as aiController from '../controllers/ai.controller.js';
 const router = Router();
 router.use(requireAuth);
 router.get('/recommendations/:symbol', [...symbolParam, validateRequest], asyncHandler(aiController.recommendations));
+router.get('/market-insights', asyncHandler(aiController.marketInsights));
 
 export default router;
