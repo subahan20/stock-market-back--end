@@ -189,7 +189,8 @@ function buildOverview(rowsBySymbol, sparklines, asOf) {
     };
   }).filter(Boolean);
 
-  const movers = ALL_TRACKED_INTERNAL.filter((s) => s !== 'NIFTY' && s !== 'SENSEX')
+  const activeSymbols = Object.keys(rowsBySymbol);
+  const movers = activeSymbols.filter((s) => s !== 'NIFTY' && s !== 'SENSEX')
     .map((s) => {
       const r = rowsBySymbol[s];
       if (!r || r.price == null || r.change_percent == null) return null;
@@ -207,7 +208,7 @@ function buildOverview(rowsBySymbol, sparklines, asOf) {
   const topLosers = [...movers].sort((a, b) => a.changePct - b.changePct).slice(0, 5);
 
   const bySymbol = {};
-  for (const s of ALL_TRACKED_INTERNAL) {
+  for (const s of activeSymbols) {
     const r = rowsBySymbol[s];
     if (!r || r.price == null) continue;
     bySymbol[s] = {
@@ -379,11 +380,10 @@ export async function refreshLiveMarket() {
  * @param {string} [asOf]
  */
 export function buildOverviewFromDbRows(rows, sparklines, asOf) {
-  const by = Object.fromEntries((rows || []).map((r) => [r.symbol, r]));
   const rowsBySymbol = {};
-  for (const sym of ALL_TRACKED_INTERNAL) {
-    const r = by[sym];
-    if (!r) continue;
+  for (const r of (rows || [])) {
+    const sym = r?.symbol;
+    if (!sym) continue;
     const price = Number(r.price);
     const chg = Number(r.change_percent);
     if (!Number.isFinite(price) || !Number.isFinite(chg)) continue;

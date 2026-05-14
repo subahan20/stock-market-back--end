@@ -7,10 +7,9 @@ import { STOCK_UNIVERSE } from './stockUniverse.js';
  *   - All major US/NASDAQ tickers (AAPL, MSFT, TSLA, NVDA, GOOGL, AMZN, …)
  *   - A very limited set of NSE symbols (INFY is one of the few free-tier-allowed ones).
  *
- * NSE/BSE indices (NIFTY_50, SENSEX) and most NSE equities (RELIANCE, TCS, HDFCBANK)
  * require Twelve Data Grow plan or higher. Add them back here once you upgrade.
  */
-export const MARKET_CARD_SYMBOLS = ['INFY', 'AAPL', 'MSFT', 'TSLA', 'NVDA', 'GOOGL'];
+export const MARKET_CARD_SYMBOLS = ['AAPL', 'MSFT', 'TSLA', 'NVDA', 'GOOGL', 'RELIANCE'];
 
 /**
  * Symbols the live job fetches every broadcast tick. Kept tight to fit the Twelve Data
